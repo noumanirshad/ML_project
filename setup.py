@@ -6,7 +6,7 @@ hy_e = '-e .'
 def get_requirements(path:str)->List[str]:
     '''Returns a list of requirements'''
     requirement = []
-    with open(path, 'r') as f:
+    with open(path, 'r') as f: 
         requirement = f.readlines()
         requirement = [req.replace('\n', '') for req in requirement]
         if hy_e in requirement:
