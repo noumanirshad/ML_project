@@ -26,7 +26,8 @@ class DataIngestion:
         try:
             ##Reading the data from sql
 
-            df = read_sql_data()
+            # df = read_sql_data()  
+            df = pd.read_csv(os.path.join("Notebooks/Datasets", "StudentsPerformance.csv"))
 
             logging.info('Reading data completed from MYSQL database')
 
