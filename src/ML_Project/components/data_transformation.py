@@ -15,7 +15,7 @@ from src.ML_Project.utils import save_object
 
 @dataclass
 class DataTransformationConfig:
-    preprocessor_obj_file_path = os.path.join('Notebooks', 'Preprocessor.pkl')
+    preprocessor_obj_file_path = os.path.join('Notebooks/Datasets', 'Preprocessor.pkl')
 
 class DataTransformation:
     def __init__(self):
@@ -85,12 +85,15 @@ class DataTransformation:
 
             logging.info("Applying processing training and test dataframe")
 
-            input_feature_train_arr= preprocessor_obj.fit_transform (input_features_train_df)
+            input_feature_train_arr= preprocessor_obj.fit_transform(input_features_train_df)
             input_feature_test_arr=preprocessor_obj.transform(input_feature_test_df)
             train_arr = np.c_[
-            input_feature_train_arr, np.array(target_feature_train_df)
+            input_feature_train_arr 
+            # np.array(target_feature_train_df)
             ]
-            test_arr = np.c_[input_feature_test_arr, np.array(target_feature_test_df)]
+            test_arr = np.c_[input_feature_test_arr
+                            #  , np.array(target_feature_test_df)
+                            ]
             logging.info(f"Saved preprocessing object")
 
             save_object(
@@ -102,6 +105,8 @@ class DataTransformation:
             return (
                 train_arr,
                 test_arr,
+                target_feature_train_df,
+                target_feature_test_df,
                 self.data_transformation_config.preprocessor_obj_file_path
             )
         

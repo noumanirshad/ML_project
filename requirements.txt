@@ -6,4 +6,5 @@ mysql-connector-python
 python-dotenv
 catboost
 xgboost
+mlflow
 -e .
